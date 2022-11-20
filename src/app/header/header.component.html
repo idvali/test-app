@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
     <ng-container *ngIf="userData$ | async as userData">
-        <ng-container *ngIf="userData.data.currentUser.name; else notLoggedIn">
+        <ng-container *ngIf="userData?.data?.currentUser?.name; else notLoggedIn">
             <span> User: {{ userData.data.currentUser.name }}</span>
             <span> Balance: {{ calculateBalance(userData.data.currentUser.wallets) }}</span>
         </ng-container>

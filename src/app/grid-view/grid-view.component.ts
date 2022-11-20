@@ -8,7 +8,7 @@ import { ApiService } from '../api.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridViewComponent{
-  boxes$ = this.apiService.getBoxData().valueChanges;
+  boxes$ = this.apiService.getBoxesData().valueChanges;
 
   constructor(private apiService: ApiService) { }
 }
