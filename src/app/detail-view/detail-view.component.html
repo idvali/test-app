@@ -21,19 +21,25 @@
 
 <ng-template #modal>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">You Won</h4>
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <h4 class="modal-title pull-left">{{ errorMsg ? 'Ups' : 'You Won'}}</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
             <span aria-hidden="true" class="visually-hidden">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <ng-container *ngIf="prizes.length; else nothingWon">
-            <ng-container *ngFor="let prize of prizes">
-                <p>{{ prize?.name }} of value: {{ prize?.value }}</p>
-            </ng-container>
+        <ng-container *ngIf="errorMsg; else content">
+            <p>{{ errorMsg }}</p>
         </ng-container>
-        <ng-template #nothingWon>
-            <p>Nothing</p>
+
+        <ng-template #content>
+            <ng-container *ngIf="prizes.length; else nothingWon">
+                <ng-container *ngFor="let prize of prizes">
+                    <p>{{ prize?.name }} of value: {{ prize?.value }}</p>
+                </ng-container>
+            </ng-container>
+            <ng-template #nothingWon>
+                <p>Nothing</p>
+            </ng-template>
         </ng-template>
     </div>
 </ng-template>

@@ -17,6 +17,7 @@ export class DetailViewComponent implements OnInit {
   @ViewChild('modal') modal: TemplateRef<any>;
   private boxId: string = '';
   prizes: BoxVariant[] = [];
+  errorMsg = '';
 
   modalRef?: BsModalRef;
   boxDetails = this.actRoute.paramMap.pipe(switchMap((params) => {
@@ -35,14 +36,27 @@ export class DetailViewComponent implements OnInit {
 
   openBox(): void {
     this.store.dispatch(setLoading());
-    this.apiService.openBox(this.boxId).subscribe(res => {
-      this.store.dispatch(setLoaded());
-      this.prizes = res.data?.openBox.boxOpenings.filter(item => item.itemVariant).map(item => item.itemVariant) || [];
-      this.openModal(this.modal);
-    })
+
+    this.apiService.openBox(this.boxId).subscribe({
+      next: (res) => {
+        this.store.dispatch(setLoaded());
+        this.prizes = res.data?.openBox.boxOpenings.filter(item => item.itemVariant).map(item => item.itemVariant) || [];
+        this.openModal(this.modal);
+      }, error: (err) => {
+        this.store.dispatch(setLoaded());
+        this.errorMsg = err.message;
+        this.openModal(this.modal);
+      }
+    });
   }
 
-  private openModal(template: TemplateRef<any>) {
+  closeModal(): void {
+    this.errorMsg = '';
+    this.prizes = [];
+    this.modalRef?.hide();
+  }
+
+  private openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
   }
 }
