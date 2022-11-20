@@ -1,0 +1,15 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <ng-container *ngIf="userData$ | async as userData">
+        <ng-container *ngIf="userData.data.currentUser.name; else notLoggedIn">
+            <span> User: {{ userData.data.currentUser.name }}</span>
+            <span> Balance: {{ calculateBalance(userData.data.currentUser.wallets) }}</span>
+        </ng-container>
+    </ng-container>
+
+    <ng-template #notLoggedIn>
+        <a href="https://api-staging.csgoroll.com/auth/steam?redirectUri=http://localhost:4200" type="button"
+            class="btn btn-primary">
+            Log In
+        </a>
+    </ng-template>
+</nav>
