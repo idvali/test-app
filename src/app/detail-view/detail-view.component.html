@@ -1,7 +1,10 @@
 <app-header></app-header>
 <main>
     <section class="container-fluid">
-        <div class="row">
+        <a routerLink="" type="button" class="btn btn-primary my-2">
+            Back
+        </a>
+        <div class="row ml-1">
             <div class="card col-6" *ngIf="boxDetails | async as box">
                 <img class="card-img-top" loading="lazy" [src]="box.node.iconUrl" alt="{{ box.node.name }}">
                 <div class="card-body">

@@ -19,7 +19,8 @@ import {
 } from '@apollo/client/core';
 
 import { getMainDefinition } from '@apollo/client/utilities';
-import { WebSocketLink } from '@apollo/client/link/ws'
+import { StoreModule } from '@ngrx/store';
+import { loadingReducer } from './store/reducers';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { WebSocketLink } from '@apollo/client/link/ws'
     HttpClientModule,
     ApolloModule,
     ButtonsModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    StoreModule.forRoot({ loading: loadingReducer })
   ],
   providers: [
     {

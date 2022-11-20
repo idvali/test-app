@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
+import { setLoaded, setLoading } from '../store/actions';
 import { BoxVariant } from '../types';
 
 @Component({
@@ -23,13 +25,18 @@ export class DetailViewComponent implements OnInit {
     return this.apiService.getBoxData(boxId)
   }));
 
-  constructor(private apiService: ApiService, private actRoute: ActivatedRoute, private modalService: BsModalService) { }
+  constructor(private apiService: ApiService,
+    private actRoute: ActivatedRoute,
+    private modalService: BsModalService,
+    private store: Store<{ loading: boolean }>) { }
 
   ngOnInit(): void {
   }
 
   openBox(): void {
+    this.store.dispatch(setLoading());
     this.apiService.openBox(this.boxId).subscribe(res => {
+      this.store.dispatch(setLoaded());
       this.prizes = res.data?.openBox.boxOpenings.map(item => item.itemVariant) || [];
       this.openModal(this.modal);
     })
