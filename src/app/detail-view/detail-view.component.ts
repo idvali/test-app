@@ -37,7 +37,7 @@ export class DetailViewComponent implements OnInit {
     this.store.dispatch(setLoading());
     this.apiService.openBox(this.boxId).subscribe(res => {
       this.store.dispatch(setLoaded());
-      this.prizes = res.data?.openBox.boxOpenings.map(item => item.itemVariant) || [];
+      this.prizes = res.data?.openBox.boxOpenings.filter(item => item.itemVariant).map(item => item.itemVariant) || [];
       this.openModal(this.modal);
     })
   }
