@@ -1,0 +1,17 @@
+<app-header></app-header>
+<main>
+    <section class="container-fluid">
+        <div class="row flex-wrap">
+            <ng-container *ngIf="boxes$ | async as listBoxes">
+                <div class="card" style="width: 18rem;" *ngFor="let box of listBoxes.data.boxes.edges">
+                    <img class="card-img-top" [src]="box.node.iconUrl" alt="{{ box.node.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ box.node.name }}</h5>
+                        <p class="card-text">{{ box.node.cost }}</p>
+                        <a [routerLink]="['/box', box.node.id]" class="btn btn-primary">View Box</a>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </section>
+</main>
