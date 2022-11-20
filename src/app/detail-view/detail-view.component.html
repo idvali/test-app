@@ -5,14 +5,16 @@
             Back
         </a>
         <div class="row ml-1">
-            <div class="card col-6" *ngIf="boxDetails | async as box">
-                <img class="card-img-top" loading="lazy" [src]="box.node.iconUrl" alt="{{ box.node.name }}">
-                <div class="card-body border">
-                    <h5 class="card-title">{{ box.node.name }}</h5>
-                    <p class="card-text">Cost: {{ box.node.cost }}</p>
-                    <button (click)="openBox()" type="button" class="btn btn-primary">
-                        Open Box
-                    </button>
+            <div class="col-6">
+                <div class="card" *ngIf="boxDetails | async as box">
+                    <img class="card-img-top" loading="lazy" [src]="box.node.iconUrl" alt="{{ box.node.name }}">
+                    <div class="card-body border">
+                        <h5 class="card-title">{{ box.node.name }}</h5>
+                        <p class="card-text">Cost: {{ box.node.cost }}</p>
+                        <button (click)="openBox()" type="button" class="btn btn-primary">
+                            Open Box
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
