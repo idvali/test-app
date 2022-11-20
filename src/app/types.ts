@@ -26,3 +26,9 @@ export interface Edges {
         cost: number
     }
 }
+
+export interface OpenBoxInput {
+    boxId: number;
+    amount?: number;
+    multiplierBoxBet?: number;
+}
