@@ -1,0 +1,31 @@
+<app-header></app-header>
+<main>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="card col-6" *ngIf="boxDetails | async as box">
+                <img class="card-img-top" loading="lazy" [src]="box.node.iconUrl" alt="{{ box.node.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ box.node.name }}</h5>
+                    <p class="card-text">{{ box.node.cost }}</p>
+                    <button (click)="openBox()" type="button" class="btn btn-primary">
+                        Open Box
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<ng-template #modal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">You Won</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ng-container *ngFor="let prize of prizes">
+            <p>{{ prize.name }} of value: {{ prize.value }}</p>
+        </ng-container>
+    </div>
+</ng-template>

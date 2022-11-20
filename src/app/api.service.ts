@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { find, map } from 'rxjs';
-import { Boxes, User } from './types';
+import { map } from 'rxjs';
+import { Boxes, OpenBoxResponse, User } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -80,7 +80,7 @@ export class ApiService {
   }
 
   openBox(Id: string) {
-    return this.apollo.mutate({ mutation: this.openBoxMutation, variables: { input: { boxId: Id, amount: 1 } } });
+    return this.apollo.mutate<OpenBoxResponse>({ mutation: this.openBoxMutation, variables: { input: { boxId: Id, amount: 1 } } });
   }
 
   subscribeToWallet() {

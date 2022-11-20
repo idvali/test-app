@@ -32,3 +32,15 @@ export interface OpenBoxInput {
     amount?: number;
     multiplierBoxBet?: number;
 }
+
+export interface OpenBoxResponse {
+    openBox: {
+        boxOpenings: { id: string; itemVariant: BoxVariant }[]
+    }
+}
+
+export interface BoxVariant {
+    name: string;
+    value: number;
+    id: string;
+}

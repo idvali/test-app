@@ -19,10 +19,13 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "@apollo/client": "^3.7.1",
+    "@ngrx/store": "^14.3.2",
     "apollo-angular": "^4.1.1",
     "graphql": "^16.6.0",
+    "graphql-ws": "^5.11.2",
     "ngx-bootstrap": "^9.0.0",
     "rxjs": "~7.5.0",
+    "subscriptions-transport-ws": "^0.11.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
