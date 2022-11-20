@@ -8,18 +8,22 @@ import { InMemoryCache } from '@apollo/client/core';
 import { GridViewComponent } from './grid-view/grid-view.component'
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
+import { DetailViewComponent } from './detail-view/detail-view.component';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
   declarations: [
     AppComponent,
     GridViewComponent,
-    HeaderComponent
+    HeaderComponent,
+    DetailViewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ApolloModule
+    ApolloModule,
+    ButtonsModule.forRoot()
   ],
   providers: [
     {
